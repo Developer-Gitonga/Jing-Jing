@@ -1,6 +1,45 @@
 {% extends 'base.html' %} 
 {% block content %}
-<br><br><br><br>
-<h6>Tuko ndani</h6>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<section class="login">
+    <article class="login-container">
+        <div class="login-welcome">
+            <div class="login-welcome-container">
+                <h1>Welcome to Login</h1>
+                <p>Don't have an account?</p>
+                <div class="login-welcome-button">
+                    <a href="#">Sign Up</a>
+                </div>
+            </div>
+        </div>
+        <div class="login-form">
+            <div class="login-form-title">
+                <h3>Sign In</h3>
+                <form action="" method="post">
+                    {% csrf_token %} {{ form.as_p }}
+                    <div class="login-form-signin">
+                        <button>Sign In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </article>
+</section>
+</body>
+
+<script>
+    $(document).ready(function() {
+        $("#id_username").attr('placeholder', '{{form.username.label}}');
+        $("#id_password").attr('placeholder', '{{form.password.label}}');
+    });
+</script>
+</html>
 {% endblock %}
