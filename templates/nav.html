@@ -47,23 +47,23 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     {% if user.is_anonymous %}
-                    <a class="dropdown-item" href="{% url 'posts' %}"
+                    <a class="dropdown-item" href="#"
                       >View testimonials</a
                     >
-                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
-                    <a class="dropdown-item" href="{% url 'register' %}"
+                    <a class="dropdown-item" href="#">Login</a>
+                    <a class="dropdown-item" href="#"
                       >Sign Up</a
                     >
                     {% else %}
-                    <a class="dropdown-item" href="{% url 'posts' %}"
+                    <a class="dropdown-item" href="#"
                       >View testimonials</a
                     >
-                    <a class="nav-link" href="{% url 'profile' %}"
+                    <a class="nav-link" href="#"
                       ><i class="fas fa-user"></i>Profile</a
                     >
   
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                    <a class="dropdown-item" href="#">Logout</a>
                     {% endif %}
                   </div>
                 </li>
