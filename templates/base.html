@@ -1,0 +1,21 @@
+{% load bootstrap4 %} {% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> {% if title %}
+    <title>{{title}}| Jingle</title>
+    {% else %}
+    <title>Jingle</title>
+    {% endif %}
+
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+
+    <!-- static file links -->
+    {% block styles %} {% bootstrap_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" /> {% endblock %}
+
+    <!-- end static links -->
+</head>
