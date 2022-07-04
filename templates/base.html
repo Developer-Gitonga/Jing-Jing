@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> {% if title %}
     <title>{{title}}| Jingle</title>
     {% else %}
-    <title>Jingle</title>
+    <title>Jingle | coding journey</title>
     {% endif %}
 
     <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
@@ -24,7 +24,7 @@
     <div class="container-fluid">
         {% block content %}
         <!-- home content -->
-        {%endblock%}
+        {% endblock %}
     </div>
 
     {% block scripts %}
