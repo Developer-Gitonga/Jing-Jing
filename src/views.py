@@ -4,7 +4,8 @@ from .forms import SignupForm,SearchForm, LoginForm
 from urllib import request
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -20,23 +21,27 @@ def Login(request):
     form=LoginForm()
     if request.method=='POST':
         form=LoginForm(request.POST)
+        print("logged in STEP 1 ")
         if form.is_valid():
             username=form.cleaned_data['username']
             password=form.cleaned_data['password']
             user=authenticate(request,username=username,password=password)
+            print("logged in STEP 2 ")
             if user is not None:
                 login(request,user)
+                
                 return redirect('home')
             else:
                 return HttpResponse('Such a user does not exist')
         else:
             return HttpResponse("Form is not Valid")
-    return render(request,'jingle/home.html',{'form':form})
+    
+    return render(request,'jingle/login.html',{'form':form})
 
-
+@login_required
 def logout(request):
-    user.logout(request)
-    return redirect('/')
+    # logout(request)
+    return HttpResponse("logged out")
 
 
 def Signup(request):
