@@ -1,5 +1,8 @@
-from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.views import View
+from .forms import SignupForm,SearchForm, LoginForm
+from urllib import request
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 
@@ -9,8 +12,6 @@ def Home( request):
 def Cart( request):
     return render(request, 'jingle/cart.html')
 
-# def Login( request):
-#     return render(request, 'jingle/login.html')
 
 def Login(request):
     form=LoginForm()
@@ -30,12 +31,12 @@ def Login(request):
     return render(request,'jingle/login.html',{'form':form})
 
 
-def register(request):
+def Signup(request):
     if request.method == "POST":
-        form = RegisterForm(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
         return redirect("login")
     else:
-        form = RegisterForm()
+        form = SignupForm()
     return render(request,'jingle/sign-up.html', {"form":form})

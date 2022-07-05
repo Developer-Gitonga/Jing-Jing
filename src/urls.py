@@ -5,7 +5,7 @@ from src import views
 urlpatterns = [
     path('', views.Home, name='home'),
     path('cart/', views.Cart, name='cart'),
-    # path('register/', RegisterView.as_view(), name='register'),
+    path('signup/', views.Signup, name='signup'),
     path('login/', views.Login, name='login'),
     # path('logout/', LogoutView.as_view(), name='logout'),
     # path('profile/<int:pk>/update/', views.edit_user, name='edit_profile'),
