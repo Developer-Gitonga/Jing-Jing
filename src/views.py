@@ -8,8 +8,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
-
-
 def Home( request):
     return render(request, 'jingle/home.html')
 
