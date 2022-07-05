@@ -26,7 +26,6 @@ def Login(request):
             username=form.cleaned_data['username']
             password=form.cleaned_data['password']
             user=authenticate(request,username=username,password=password)
-            print("logged in STEP 2 ")
             if user is not None:
                 login(request,user)
                 
