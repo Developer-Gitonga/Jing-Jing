@@ -38,11 +38,9 @@
   
             <div class="divider d-flex align-items-center my-4">
               <p class="text-center fw-bold mx-3 mb-0">Or</p>
-            </div>
-            
+            </div>            
             {% csrf_token %}
             {{ form.as_p }} 
-
             <input type="submit" name="sumbit">
   
             <!-- Email input -->
