@@ -14,7 +14,6 @@ def Home( request):
 def Cart( request):
     return render(request, 'jingle/cart.html')
 
-
 def Login(request):
     form=LoginForm()
     if request.method=='POST':
