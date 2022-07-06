@@ -39,7 +39,6 @@ def logout(request):
     # logout(request)
     return HttpResponse("logged out")
 
-
 def Signup(request):
     if request.method == "POST":
         form = SignupForm(request.POST)
