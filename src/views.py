@@ -3,7 +3,7 @@ from django.views import View
 from .forms import SignupForm,SearchForm, LoginForm
 from urllib import request
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
