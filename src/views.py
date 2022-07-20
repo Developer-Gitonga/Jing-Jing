@@ -3,7 +3,7 @@ from django.views import View
 from .forms import SignupForm,SearchForm, LoginForm
 from urllib import request
 from django.http import HttpResponse, HttpResponseRedirect
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -56,56 +56,58 @@ def Signup(request):
         form = SignupForm()
     return render(request,'jingle/sign-up.html', {"form":form})
 
+# def Profile( request):
+#     return render(request, 'jingle/profile.html')
 
-# # class ProfileView(LoginRequiredMixin, View):
-# #     login_url = '/login/'
-# #     """this class view is used to render the profile page and execute user profile updates."""
+class ProfileView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    """this class view is used to render the profile page and execute user profile updates."""
 
-#     def Profile(self, request):
-#         user = request.user
+    def get(self, request):
+        user = request.user
         
-#         profile = get_object_or_404(UserProfile, user=user)
-#         context = {
-#             'title': 'Profile',
-#             'user_data': user,
-#             'profile_data': profile,
+        # profile = get_object_or_404(UserProfile, user=user)
+        context = {
+            'title': 'Profile',
+            'user_data': user,
+            'profile_data': profile,
            
-#         }
-#         return render(request, 'jingle/profile.html')
+        }
+        return render(request, 'jingle/profile.html')
 
 
-# # profile design
-# # @login_required
-# def edit_profile(request, pk):
-#     user = User.objects.get(pk=pk)
+# profile design
+@login_required
+def edit_profile(request, pk):
+    user = User.objects.get(pk=pk)
 
-#     # prepolate the form with the user's data
-#     user_form = UserForm(instance=user)
+    # prepolate the form with the user's data
+    user_form = UserForm(instance=user)
 
-#     ProfileInlineFormSet = inlineformset_factory(
-#         User, UserProfile, fields=('bio', 'phone', 'picture'), extra=0)
-#     formset = ProfileInlineFormSet(instance=user)
+    ProfileInlineFormSet = inlineformset_factory(
+        User, UserProfile, fields=('bio', 'phone', 'picture'), extra=0)
+    formset = ProfileInlineFormSet(instance=user)
 
-#     if request.user.is_authenticated and request.user.id == user.id:
-#         if request.method == 'POST':
-#             user_form = UserForm(
-#                 request.POST, request.FILES, instance=user)
-#             formset = ProfileInlineFormSet(
-#                 request.POST, request.FILES, instance=user)
+    if request.user.is_authenticated and request.user.id == user.id:
+        if request.method == 'POST':
+            user_form = UserForm(
+                request.POST, request.FILES, instance=user)
+            formset = ProfileInlineFormSet(
+                request.POST, request.FILES, instance=user)
 
-#             if user_form.is_valid():
-#                 created_user = user_form.save(commit=False)
-#                 formset = ProfileInlineFormSet(
-#                     request.POST, request.FILES, instance=created_user)
-#                 if formset.is_valid():
-#                     created_user.save()
-#                     formset.save()
-#                     return HttpResponseRedirect('/profile/')
+            if user_form.is_valid():
+                created_user = user_form.save(commit=False)
+                formset = ProfileInlineFormSet(
+                    request.POST, request.FILES, instance=created_user)
+                if formset.is_valid():
+                    created_user.save()
+                    formset.save()
+                    return HttpResponseRedirect('/profile/')
 
-#         return render(request, 'jingke/edit_profile.html', {
-#             "pk": pk,
-#             "user_form": user_form,
-#             "formset": formset,
-#         })
-#     else:
-#         raise PermissionDenied
+        return render(request, 'jingle/edit_profile.html', {
+            "pk": pk,
+            "user_form": user_form,
+            "formset": formset,
+        })
+    else:
+        raise PermissionDenied
