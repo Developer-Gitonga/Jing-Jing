@@ -30,4 +30,6 @@ class ProfileForm(ModelForm):
         fields = ['profilePhoto','bio']
 
 class SearchForm(forms.Form):
-    name = forms.CharField(max_length=30)
+    name = forms.CharField(max_length=100)
+
+    

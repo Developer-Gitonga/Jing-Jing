@@ -1,4 +1,5 @@
 {% extends 'base.html' %} 
+{% load static %}
 {% block content %}
 
 <!DOCTYPE html>
@@ -33,6 +34,17 @@
       <!-- Heading -->
       <h2 class="my-5 h2 text-center">Checkout form</h2>
 
+      <article class="nav-search">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="nav-search-image">
+                <img src="{% static 'images/search.png' %}" alt="search">
+            </div>
+            <div class="nav-search-input">
+                {{searchform}}
+            </div>
+        </form>
+    </article>
       <!--Grid row-->
       <div class="row">
 
@@ -290,6 +302,7 @@
   <!--Footer-->
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
+    
     <!--Call to action-->
     <div class="pt-4">
       <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank" role="button">Download MDB

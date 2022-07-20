@@ -12,7 +12,14 @@ def Home( request):
     return render(request, 'jingle/home.html')
 
 def Cart( request):
-    return render(request, 'jingle/cart.html')
+    searchform = SearchForm()
+    userid = request.user.id
+    if request.method == 'POST':
+        searchform = SearchForm(request.POST)
+        if searchform.is_valid():
+            name = searchform.cleaned_data['name']
+            userid = request.user.id
+    return render(request, 'jingle/cart.html', {"searchform":searchform})
 
 def Login(request):
     form=LoginForm()
