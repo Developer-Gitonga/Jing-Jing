@@ -56,27 +56,33 @@ def Signup(request):
         form = SignupForm()
     return render(request,'jingle/sign-up.html', {"form":form})
 
+def view_profile(request):
+    context = {
+      'user': request.user
+    }
+    return render(request, 'jingle/profile.html', context)
+
 # def Profile( request):
 #     return render(request, 'jingle/profile.html')
 
-class ProfileView(LoginRequiredMixin, View):
-    login_url = '/login/'
-    """this class view is used to render the profile page and execute user profile updates."""
+# class ProfileView(LoginRequiredMixin, View):
+#     login_url = '/login/'
+#     """this class view is used to render the profile page and execute user profile updates."""
 
-    def get(self, request):
-        user = request.user
+#     def get(self, request):
+#         user = request.user
         
-        # profile = get_object_or_404(UserProfile, user=user)
-        context = {
-            'title': 'Profile',
-            'user_data': user,
-            'profile_data': profile,
+#         # profile = get_object_or_404(UserProfile, user=user)
+#         context = {
+#             'title': 'Profile',
+#             'user_data': user,
+#             'profile_data': profile,
            
-        }
-        return render(request, 'jingle/profile.html')
+#         }
+#         return render(request, 'jingle/profile.html')
 
 
-# profile design
+# # profile design
 @login_required
 def edit_profile(request, pk):
     user = User.objects.get(pk=pk)
