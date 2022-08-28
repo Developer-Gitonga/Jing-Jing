@@ -6,10 +6,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from .models import *
 
 def Home( request):
-    return render(request, 'jingle/home.html')
+    images = Image.objects.all()
+    context = {'images':images}
+    return render(request, 'jingle/home.html', context)
 
 def Cart( request):
     searchform = SearchForm()
@@ -117,3 +119,5 @@ def edit_profile(request, pk):
         })
     else:
         raise PermissionDenied
+
+
